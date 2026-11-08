@@ -1,6 +1,6 @@
+
 /*
- * This file is part of the Meteor Client distribution (https://github.com/MeteorDevelopment/meteor-client).
- * Copyright (c) Meteor Development.
+ * This file is part of the Fuck IT Client distribution.
  */
 
 package meteordevelopment.meteorclient.gui.themes.meteor.widgets;
@@ -34,7 +34,11 @@ public class WMeteorWindow extends WWindow implements MeteorWidget {
 
         @Override
         protected void onRender(GuiRenderer renderer, double mouseX, double mouseY, double delta) {
-            renderer.quad(this, theme().accentColor.get());
+            // Dark navy header
+            renderer.quad(this, theme().backgroundColor.get());
+
+            // Electric blue accent line
+            renderer.quad(x, y + height - 2, width, 2, theme().accentColor.get());
         }
     }
 }
