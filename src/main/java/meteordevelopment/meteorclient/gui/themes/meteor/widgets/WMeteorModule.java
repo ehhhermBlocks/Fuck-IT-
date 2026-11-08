@@ -1,6 +1,6 @@
+
 /*
- * This file is part of the Meteor Client distribution (https://github.com/MeteorDevelopment/meteor-client).
- * Copyright (c) Meteor Development.
+ * This file is part of the Fuck IT Client distribution.
  */
 
 package meteordevelopment.meteorclient.gui.themes.meteor.widgets;
@@ -24,7 +24,6 @@ public class WMeteorModule extends WPressable implements MeteorWidget {
     private double titleWidth;
 
     private double animationProgress1;
-
     private double animationProgress2;
 
     public WMeteorModule(Module module, String title) {
@@ -43,7 +42,7 @@ public class WMeteorModule extends WPressable implements MeteorWidget {
 
     @Override
     public double pad() {
-        return theme.scale(4);
+        return theme.scale(5);
     }
 
     @Override
@@ -73,22 +72,38 @@ public class WMeteorModule extends WPressable implements MeteorWidget {
         animationProgress2 += delta * 6 * (module.isActive() ? 1 : -1);
         animationProgress2 = Mth.clamp(animationProgress2, 0, 1);
 
+        // Subtle navy background animation on hover or activation.
         if (animationProgress1 > 0) {
             renderer.quad(x, y, width * animationProgress1, height, theme.moduleBackground.get());
         }
+
+        // Electric-blue active indicator.
         if (animationProgress2 > 0) {
-            renderer.quad(x, y + height * (1 - animationProgress2), theme.scale(2), height * animationProgress2, theme.accentColor.get());
+            renderer.quad(
+                x,
+                y + height * (1 - animationProgress2),
+                theme.scale(3),
+                height * animationProgress2,
+                theme.accentColor.get()
+            );
         }
 
-        double x = this.x + pad;
-        double w = width - pad * 2;
+        double textX = this.x + pad;
+        double textWidth = width - pad * 2;
 
         if (theme.moduleAlignment.get() == AlignmentX.Center) {
-            x += w / 2 - titleWidth / 2;
+            textX += textWidth / 2 - titleWidth / 2;
         } else if (theme.moduleAlignment.get() == AlignmentX.Right) {
-            x += w - titleWidth;
+            textX += textWidth - titleWidth;
         }
 
-        renderer.text(title, x, y + pad, theme.textColor.get(), false);
+        // Active module names use the electric-blue accent.
+        renderer.text(
+            title,
+            textX,
+            y + pad,
+            module.isActive() ? theme.accentColor.get() : theme.textColor.get(),
+            false
+        );
     }
 }
