@@ -107,16 +107,14 @@ public final Setting<SettingColor> checkboxColor = color("checkbox", "Color of c
 
     // Background
 
-    public final ThreeStateColorSetting backgroundColor = new ThreeStateColorSetting(
-        sgBackgroundColors,
-        "background",
-        new SettingColor(20, 20, 20, 200),
-        new SettingColor(30, 30, 30, 200),
-        new SettingColor(40, 40, 40, 200)
-    );
-
-    public final Setting<SettingColor> moduleBackground = color(sgBackgroundColors, "module-background", "Color of module background when active.", new SettingColor(50, 50, 50));
-
+public final ThreeStateColorSetting backgroundColor = new ThreeStateColorSetting(
+    sgBackgroundColors,
+    "background",
+    new SettingColor(16, 23, 34, 230),
+    new SettingColor(23, 35, 51, 230),
+    new SettingColor(32, 46, 64, 230)
+);
+public final Setting<SettingColor> moduleBackground = color(sgBackgroundColors, "module-background", "Color of module background when active.", new SettingColor(35, 55, 80));
     // Outline
 
     public final ThreeStateColorSetting outlineColor = new ThreeStateColorSetting(
